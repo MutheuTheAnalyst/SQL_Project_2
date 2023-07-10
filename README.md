@@ -16,7 +16,7 @@
 
 - Correspondingly,the queries are: **Query 1**: create table product_cost (product_id int primary key,cost_price float); **Query 2**: create table sales_1 (customer_id int primary key,product_id int,sell_price float,quantity int,state varchar(20));
 
-- To **confirm that the tables were created successfully**,I used the queries: **Query 1**: describe product_cost; **Query 2** describe sales_1;
+- To **confirm that the tables were created successfully**,I used the queries: **Query 1**: describe product_cost; **Query 2**: describe sales_1;
 
 - As per the **guidelines of the figurative finance department**,the **cost of any product should 20 kshs and above**.Thus,I set out to **create a trigger for the cost_product table** to ensure that all products meet the set guidelines.
 
