@@ -22,7 +22,7 @@
 
 - **'Before insert trigger' query**; delimiter // create trigger cost_price_confirmation before insert on product_cost for each row begin if new.cost_price < 20 then set new.cost_price = 20 end if; end delimiter ;
 
-- I proceeded to **insert records into product_cost table**.**Query**;insert into product_cost values(....);.Then **inserted records into the sales_1 table**.**Query**;insert into sales_1 values(.....);.Refer to attached files for the records input in both tables.
+- I proceeded to **insert records into product_cost table**.**Query**;insert into product_cost values(....);.Then **inserted records into the sales_1 table**. **Query**; insert into sales_1 values(.....);.Refer to attached files for the records input in both tables.
 
 
 
