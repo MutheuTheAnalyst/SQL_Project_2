@@ -1,0 +1,6 @@
+Field,Type,Null,Key,Default,Extra
+customer_id,int,NO,PRI,NULL,
+product_id,int,YES,,NULL,
+sell_price,float,YES,,NULL,
+Quantity,int,YES,,NULL,
+state,varchar(20),YES,,NULL,

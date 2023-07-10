@@ -1,0 +1,3 @@
+Field,Type,Null,Key,Default,Extra
+product_id,int,NO,PRI,NULL,
+cost_price,float,YES,,NULL,

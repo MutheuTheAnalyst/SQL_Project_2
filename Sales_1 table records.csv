@@ -1,0 +1,14 @@
+customer_id,product_id,sell_price,Quantity,state
+8133,121,65.99,5,California
+8134,127,69.83,1,Florida
+8135,124,45.62,4,California
+8136,121,65.99,2,California
+8137,125,73.23,1,Texas
+8138,125,73.23,5,Florida
+8139,123,51.66,2,California
+8140,122,63.33,4,California
+8141,121,65.99,3,Texas
+8142,124,45.62,1,Texas
+8143,122,63.33,2,Florida
+8144,127,69.83,4,Florida
+8145,124,45.62,6,California
