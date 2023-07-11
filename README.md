@@ -24,5 +24,9 @@
 
 - I proceeded to **insert records into product_cost table**.**Query**;insert into product_cost values(....);.Then **inserted records into the sales_1 table**. **Query**; insert into sales_1 values(.....);.Refer to attached files for the records input in both tables.
 
+- To **display the records inserted into the tables**,I used the queries:**Query 1**;select * from sales_1; **Query 2**;select * from product_cost;
+
+## Data exploration
+
 
 
