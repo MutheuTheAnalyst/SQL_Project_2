@@ -27,6 +27,28 @@
 - To **display the records inserted into the tables**,I used the queries:**Query 1**;select * from sales_1; **Query 2**;select * from product_cost;
 
 ## Data exploration
+**1)**. **Label records** from both the 'product_cost table' and 'sales_1 table' **by row**.This makes it **easier to reference a given record** in the tables.
+
+  - *Query*: select row_number() over (order by product_id) as row_num,product_id,cost_price from product_cost; 
+         
+  - *Query*: select row_number() over (order by customer_id) as row_num,customer_id,product_id,sell_price,quantity,state from sales_1;
+
+**2)**. Determine the **number of products on sale**.From the query,I deduced that **7 products are on sale**.
+
+ - *Query*: select count(distinct(product_id)) from product_cost;
+
+  **3)**. Determine the **profit margin** to be obtained  **from** the **sale of each product**.From the query,I determined that **'product_id 121'** has the **highest profit margin of 'kshs 15.13'** while **'product_id 122' has the least profit margin of 'kshs 1.55'**.
+
+  - *Query*: select p.product_id,avg(round((s.sell_price-p.cost_price),2)) as profit_margin from product_cost as p inner join sales_1 as s
+             on p.product_id=s.product_id group by product_id order by profit_margin desc;
+
+ **4)**. #Total number of sales,total revenue and total profit obtained from each product 
+  select p.product_id,p.cost_price,s.sell_price,sum(s.Quantity) as quantity_sold,round(((sum(s.quantity))*s.sell_price),2) as total_revenue,
+round((sum((s.sell_price-p.cost_price)*(s.Quantity))),2) as profit 
+from product_cost as p inner join sales_1 as s
+on p.product_id=s.product_id
+group by p.product_id,s.sell_price
+order by profit desc;
 
 
 
