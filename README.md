@@ -39,16 +39,25 @@
 
   **3)**. Determine the **profit margin** to be obtained  **from** the **sale of each product**.From the query,I determined that **'product_id 121'** has the **highest profit margin of 'kshs 15.13'** while **'product_id 122' has the least profit margin of 'kshs 1.55'**.
 
-  - *Query*: select p.product_id,avg(round((s.sell_price-p.cost_price),2)) as profit_margin from product_cost as p inner join sales_1 as s
+- *Query*: select p.product_id,avg(round((s.sell_price-p.cost_price),2)) as profit_margin from product_cost as p inner join sales_1 as s
              on p.product_id=s.product_id group by product_id order by profit_margin desc;
 
- **4)**. #Total number of sales,total revenue and total profit obtained from each product 
-  select p.product_id,p.cost_price,s.sell_price,sum(s.Quantity) as quantity_sold,round(((sum(s.quantity))*s.sell_price),2) as total_revenue,
-round((sum((s.sell_price-p.cost_price)*(s.Quantity))),2) as profit 
-from product_cost as p inner join sales_1 as s
-on p.product_id=s.product_id
-group by p.product_id,s.sell_price
-order by profit desc;
+ **4)**. Calculate the **total number of sales**,**total revenue** and **total profit** obtained **from the sale each product**.From this query,I had a **clear overview of the general sales details** and was able to **pin-point best performing products** in addittion to **products that aren't as beneficial to the company**.
+ 
+ - *Query*: select p.product_id,p.cost_price,s.sell_price,sum(s.Quantity) as quantity_sold,round(((sum(s.quantity))*s.sell_price),2) as total_revenue,
+            round((sum((s.sell_price-p.cost_price)*(s.Quantity))),2) as profit from product_cost as p inner join sales_1 as s
+            on p.product_id=s.product_id group by p.product_id,s.sell_price order by profit desc;
+
+**5)**. Ascertain if there exists **any product(s) that did not get any sale**.From this query,I deduced that only one product i.e **only 'product_id 126' did not get any 
+        sale**.      
+       
+ - *Query*: select p.product_id,sum(s.Quantity) as quantity from product_cost as p left join sales_1 as s
+           on p.product_id=s.product_id where quantity is null group by product_id;
+
+**6)**. Average selling price for the products.
+
+-**Query**: select round((avg(sell_price)),2 ) as average_sell_price from sales_1;
+   
 
 
 
