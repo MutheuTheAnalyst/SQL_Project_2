@@ -92,5 +92,43 @@
     
  - *Query*: select * from sales_1;
 
+ **12)**. #create 'product_info' procedure that displays total number of sales,total revenue and total profit obtained from each product. 
+      
+      - *Query*: delimiter // create procedure product_info () begin select p.product_id,p.cost_price,s.sell_price,sum(s.Quantity) as 
+                 quantity_sold,round(((sum(s.quantity))*s.sell_price),2) as total_revenue, round((sum((s.sell_price-p.cost_price)*(s.Quantity))),2) as profit 
+                 from product_cost as p inner join sales_1 as s on p.product_id=s.product_id group by p.product_id,s.sell_price order by profit desc;
+                 END // delimiter ;
+
+**13)**. #use the 'product_info' procedure.
+
+      - *Query*: call product_info();
+
+**14)**. #create procedure 'sell_price_updates' to update sell_price.
+
+- *Query*: delimiter // create procedure sell_price_updates (in new_product_id int,in new_sell_price int) begin update sales_1 set product_id= new_product_id
+           where sell_price=new_sell_price; end // delimiter ;
+
+**15)**. #update sell price of record that has 127 as the product_id
+      
+- *Query*: call sell_price_updates(127,74.06);
+
+**16)** #Create view to display total number of sales per product.
+
+ - *Query*: delimiter // create view total_no_of_product_sales as select product_id,sum(quantity) as total_quantity_sold from sales_1
+            group by product_id group by total_quantity_sold desc;
+   
+**17)** #display records from 'total_no_of_product_sales' view.
+
+- *Query*: select * from total_no_of_product_sales;
+
+**18)** #Display the rank,dense_rank and ntile bucket positions for the products in the view.
+
+- *Query*: select *, rank() over (order by total_quantity_sold desc) as ranks,
+           dense_rank() over (order by total_quantity_sold desc) as density_ranks,
+           ntile(3) over (order by total_quantity_sold desc) as buckets from total_no_of_product_sales;
+
+  ## Reccommendations to the sale and marketing department.
+
+  
 
 
