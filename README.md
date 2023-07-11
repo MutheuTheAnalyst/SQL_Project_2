@@ -54,10 +54,43 @@
  - *Query*: select p.product_id,sum(s.Quantity) as quantity from product_cost as p left join sales_1 as s
            on p.product_id=s.product_id where quantity is null group by product_id;
 
-**6)**. Average selling price for the products.
+**6)**. Find the **average selling price for the products(61.48)**.This gives an estimate of the range of product prices thus guiding the customers on what prices to expect.
 
--**Query**: select round((avg(sell_price)),2 ) as average_sell_price from sales_1;
-   
+-*Query*: select round((avg(sell_price)),2 ) as average_sell_price from sales_1;
+
+**7)**. Determine **products that are above and below the average selling price**.This gives insights to the sales and marketing department on which products to market to which demographic in regards to income earned.
+
+-*Query 1*: #products with price above the average selling price(61.48)...(product_id's 121,127,125,122)
+
+            select product_id,round((avg(sell_price)),2) as price from sales_1 group by product_id having price > 61.48 ;
+            
+-*Query 2*: #products selling below the average selling price(61.48)....(product_id's 124,123)
+            select product_id,round((avg(sell_price)),2) as price from sales_1 group by product_id having price < 61.48 ;
+
+  **8)**. Rank states by their profit and diplay the total number of products sold,total number of customers,total revenue and total profits per state.This provides insight 
+         on which state(s) favour which product(s).
+
+  - The state of California ranked first, while Florida came second and Texas bottommed the list.This ranking is both the number of products sold and the profit obtained 
+     from the states.
+  
+  - *Query*: select s.state,sum(s.Quantity)  as total_products_sold,count(s.customer_id) as no_of_customers,round((sum(s.quantity*s.sell_price)),2) as total_revenue,
+             round((sum((s.sell_price-p.cost_price)*(s.Quantity))),2) as profit,(rank () over (order by round((sum((s.sell_price-p.cost_price)*(s.Quantity))),2) desc)) as 
+             state_rank from sales_1 as s inner join product_cost as p  where s.product_id=p.product_id group by s.state;
+
+    **9)**. Determine the number of sales per product and in each state.This query displays the products sold in each state and the quantity of those products sold.This 
+          deduces the best performing products in each state hence giving great leads to the sales and marketing department.
+
+   - In the state of California,the product_id 124 ranked first,while in Florida product_id 127 ranks topoed the list and in Texas the product_id 121 topped the list. 
+    
+   - *Query*: select state,product_id,sum(quantity) as total_sales_per_product from sales_1 group by state,product_id order by state,total_sales_per_product desc;
+
+  **10)**. Update the purchase quantity of customer_id '8133' and commit to the updated changes.
+  
+  - *Query*: start transaction; update sales_1 set quantity =5 where customer_id =8133; commit;
+
+  **11)** Confirm that the record(customer_id=8133)has been permanently updated. 
+    
+ - *Query*: select * from sales_1;
 
 
 
