@@ -9,7 +9,7 @@
 
 **2)**. Compare quantity of sales per product in each state in addittion to the number of customers and revenue generated per state.This is so as to take note of the states that are favourable to each product and marketing accordingly,in order to increase sales in each state.
 
-## Datasets Overview
+## Overview of the Datasets
 - To analyze the datasets on MYSQL DBMS, I **launched an already existing database** i.e 'portfolioproject' using the **Query**: use portfolioproject;
 
 - I then proceeded to **create two tables** on the database namely; **product_cost table** and **sales_1 table**.
@@ -26,7 +26,7 @@
 
 - To **display the records inserted into the tables**,I used the queries: **Query 1**: select * from sales_1; **Query 2**: select * from product_cost;
 
-## Datasets Exploration
+## Analysis of the Datasets
 **1)**. **Label records** from both the 'product_cost table' and 'sales_1 table' **by row**.
 
   - This makes it **easier to reference a given record** in the tables.
@@ -155,7 +155,7 @@ END // delimiter ;
            dense_rank() over (order by total_quantity_sold desc) as density_ranks,
            ntile(3) over (order by total_quantity_sold desc) as buckets from total_no_of_product_sales;
 
-  ## End of Data Exploration.
+  ## End of Data Analysis.
 
   
 
