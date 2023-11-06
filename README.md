@@ -97,7 +97,7 @@
 
   **9)**. Determine the **number of sales per product and in each state**.
 
-  - This query displays the products sold in each state and the quantity of the products sold.This deduces the best performing products in each state hence giving great leads to the sales and marketing department.
+  - This query displays the products sold in each state and the quantity of the products sold. This deduces the best-performing products in each state hence giving great leads to the sales and marketing department.
 
    - In the **state of California,the 'product_id 124' ranked first**,while in **Florida the 'product_id 127' topped the list** and in **Texas the 'product_id 121' topped 
      the list**. 
